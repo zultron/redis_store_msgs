@@ -1,23 +1,32 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(redis_store_msgs)
-add_definitions(-std=c++11)
+cmake_minimum_required(VERSION 3.5)
 
-find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  std_msgs
+project(robot_jog_msgs)
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+find_package(ament_cmake REQUIRED)
+# find the ROS message code generators
+find_package(rosidl_default_generators REQUIRED)
+find_package(std_msgs REQUIRED)
+
+# declare the service files to generate code for
+set(srv_files
+   "srv/GetParam.srv"
+   "srv/ResetParams.srv"
+   "srv/SetParam.srv"
+   "srv/SaveDeleteParam.srv"
 )
 
-add_service_files(
-  FILES
-  GetParam.srv
-  ResetParams.srv
-  SetParam.srv
-  SaveDeleteParam.srv
-)
+rosidl_generate_interfaces(${PROJECT_NAME}
+   ${srv_files}
+   DEPENDENCIES std_msgs
+ )
 
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
-
-catkin_package(CATKIN_DEPENDS message_runtime std_msgs geometry_msgs)
+ament_export_dependencies(rosidl_default_runtime)
+ament_package()
