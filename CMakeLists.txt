@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(robot_jog_msgs)
+project(redis_store_msgs)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
