@@ -15,6 +15,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 
+# declare the message files to generate code for
+set(msg_files
+   "msg/ParamUpdate.msg"
+ )
+
 # declare the service files to generate code for
 set(srv_files
    "srv/GetParam.srv"
@@ -24,6 +29,7 @@ set(srv_files
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+   ${msg_files}
    ${srv_files}
    DEPENDENCIES std_msgs
  )
