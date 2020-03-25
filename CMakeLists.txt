@@ -6,8 +6,8 @@ find_package(catkin REQUIRED COMPONENTS message_generation std_msgs)
 
 add_message_files(FILES ParamUpdate.msg)
 
-add_service_files(FILES GetParam.srv ResetParams.srv SaveDeleteParam.srv
-                  SetParam.srv)
+add_service_files(FILES GetParam.srv ImportExportParam.srv ResetParams.srv
+                  SaveDeleteParam.srv SetParam.srv)
 
 generate_messages(DEPENDENCIES std_msgs)
 

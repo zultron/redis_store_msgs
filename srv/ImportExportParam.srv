@@ -1,0 +1,6 @@
+# imports or exports a parameter from a file to the store and rosparam
+
+string param_name
+string file_path
+---
+bool success
